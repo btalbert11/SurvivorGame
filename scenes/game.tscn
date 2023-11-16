@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://tp66n20xr846"]
+[gd_scene load_steps=4 format=3 uid="uid://tp66n20xr846"]
 
 [ext_resource type="PackedScene" uid="uid://ch3veo7hdtlb6" path="res://scenes/grass_level.tscn" id="1_efuu8"]
 [ext_resource type="PackedScene" uid="uid://dx4tx584t45eu" path="res://scenes/player.tscn" id="2_w6apd"]
+[ext_resource type="Script" path="res://scripts/MainCamera.gd" id="3_45xlr"]
 
 [node name="Game" type="Node2D"]
 
@@ -9,3 +10,7 @@
 
 [node name="Player" parent="." instance=ExtResource("2_w6apd")]
 position = Vector2(787, 502)
+
+[node name="MainCamera" type="Camera2D" parent="Player"]
+zoom = Vector2(1.46, 1.46)
+script = ExtResource("3_45xlr")
