@@ -1,0 +1,203 @@
+[gd_scene load_steps=7 format=3 uid="uid://fyp7ogl4vcae"]
+
+[ext_resource type="Script" path="res://scripts/MapController.gd" id="1_prmr2"]
+[ext_resource type="PackedScene" uid="uid://ch3veo7hdtlb6" path="res://scenes/grass_level.tscn" id="2_usjqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lifld"]
+size = Vector2(26, 3090)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28hay"]
+size = Vector2(4897, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dy7uk"]
+size = Vector2(28, 3091)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h3sc"]
+size = Vector2(4865, 20)
+
+[node name="MapController" type="Node2D"]
+script = ExtResource("1_prmr2")
+
+[node name="Center" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Center" instance=ExtResource("2_usjqn")]
+
+[node name="Right" type="Node2D" parent="."]
+position = Vector2(1632, 0)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Right" instance=ExtResource("2_usjqn")]
+
+[node name="Left" type="Node2D" parent="."]
+position = Vector2(-1632, 0)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Left" instance=ExtResource("2_usjqn")]
+
+[node name="Top" type="Node2D" parent="."]
+position = Vector2(0, -1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Top" instance=ExtResource("2_usjqn")]
+
+[node name="Bottom" type="Node2D" parent="."]
+position = Vector2(0, 1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Bottom" instance=ExtResource("2_usjqn")]
+
+[node name="BottomRight" type="Node2D" parent="."]
+position = Vector2(1632, 1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="BottomRight" instance=ExtResource("2_usjqn")]
+
+[node name="TopRight" type="Node2D" parent="."]
+position = Vector2(1632, -1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="TopRight" instance=ExtResource("2_usjqn")]
+
+[node name="TopLeft" type="Node2D" parent="."]
+position = Vector2(-1632, -1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="TopLeft" instance=ExtResource("2_usjqn")]
+
+[node name="BottomLeft" type="Node2D" parent="."]
+position = Vector2(-1632, 1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="BottomLeft" instance=ExtResource("2_usjqn")]
+
+[node name="RightTrigger" type="Area2D" parent="."]
+position = Vector2(3232, 25)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTrigger"]
+position = Vector2(3, 487)
+shape = SubResource("RectangleShape2D_lifld")
+
+[node name="Right2" type="Node2D" parent="."]
+position = Vector2(3264, 0)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Right2" instance=ExtResource("2_usjqn")]
+
+[node name="BottomRight2" type="Node2D" parent="."]
+position = Vector2(3264, 1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="BottomRight2" instance=ExtResource("2_usjqn")]
+
+[node name="TopRight2" type="Node2D" parent="."]
+position = Vector2(3264, -1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="TopRight2" instance=ExtResource("2_usjqn")]
+
+[node name="Top2" type="Node2D" parent="."]
+position = Vector2(0, -2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Top2" instance=ExtResource("2_usjqn")]
+
+[node name="TopRight3" type="Node2D" parent="."]
+position = Vector2(1632, -2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="TopRight3" instance=ExtResource("2_usjqn")]
+
+[node name="TopLeft2" type="Node2D" parent="."]
+position = Vector2(-1632, -2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="TopLeft2" instance=ExtResource("2_usjqn")]
+
+[node name="TopTrigger" type="Area2D" parent="."]
+position = Vector2(698, -2018)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopTrigger"]
+position = Vector2(103.5, 1007)
+shape = SubResource("RectangleShape2D_28hay")
+
+[node name="LeftTrigger" type="Area2D" parent="."]
+position = Vector2(-1618, 321)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTrigger"]
+position = Vector2(-4, 191.5)
+shape = SubResource("RectangleShape2D_dy7uk")
+
+[node name="BottomTrigger" type="Area2D" parent="."]
+position = Vector2(781, 2041)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomTrigger"]
+position = Vector2(30.5, 0)
+shape = SubResource("RectangleShape2D_7h3sc")
+
+[node name="Left2" type="Node2D" parent="."]
+position = Vector2(-3264, 0)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Left2" instance=ExtResource("2_usjqn")]
+
+[node name="TopLeft3" type="Node2D" parent="."]
+position = Vector2(-3264, -1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="TopLeft3" instance=ExtResource("2_usjqn")]
+
+[node name="BottomLeft2" type="Node2D" parent="."]
+position = Vector2(-3264, 1024)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="BottomLeft2" instance=ExtResource("2_usjqn")]
+
+[node name="Bottom2" type="Node2D" parent="."]
+position = Vector2(0, 2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Bottom2" instance=ExtResource("2_usjqn")]
+
+[node name="BottomRight3" type="Node2D" parent="."]
+position = Vector2(1632, 2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="BottomRight3" instance=ExtResource("2_usjqn")]
+
+[node name="BottomLeft3" type="Node2D" parent="."]
+position = Vector2(-1632, 2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="BottomLeft3" instance=ExtResource("2_usjqn")]
+
+[node name="TopLeft4" type="Node2D" parent="."]
+position = Vector2(-3264, -2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="TopLeft4" instance=ExtResource("2_usjqn")]
+
+[node name="BottomLeft4" type="Node2D" parent="."]
+position = Vector2(-3264, 2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="BottomLeft4" instance=ExtResource("2_usjqn")]
+
+[node name="BottomRight4" type="Node2D" parent="."]
+position = Vector2(3264, 2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="BottomRight4" instance=ExtResource("2_usjqn")]
+
+[node name="TopRight4" type="Node2D" parent="."]
+position = Vector2(3264, -2048)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="TopRight4" instance=ExtResource("2_usjqn")]
+
+[connection signal="body_entered" from="RightTrigger" to="." method="_on_right_trigger_body_entered"]
+[connection signal="body_entered" from="TopTrigger" to="." method="_on_top_trigger_body_entered"]
+[connection signal="body_entered" from="LeftTrigger" to="." method="_on_left_trigger_body_entered"]
+[connection signal="body_entered" from="BottomTrigger" to="." method="_on_bottom_trigger_body_entered"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://fyp7ogl4vcae"]
+
+[ext_resource type="Script" path="res://scripts/MapController.gd" id="1_prmr2"]
+[ext_resource type="PackedScene" uid="uid://ch3veo7hdtlb6" path="res://scenes/grass_level.tscn" id="2_usjqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lifld"]
+size = Vector2(26, 1034)
+
+[node name="MapController" type="Node2D"]
+script = ExtResource("1_prmr2")
+
+[node name="Center" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Center" instance=ExtResource("2_usjqn")]
+
+[node name="Right" type="Node2D" parent="."]
+position = Vector2(1632, 0)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Right" instance=ExtResource("2_usjqn")]
+
+[node name="Left" type="Node2D" parent="."]
+position = Vector2(-1632, 0)
+metadata/_edit_group_ = true
+
+[node name="GrassLevel" parent="Left" instance=ExtResource("2_usjqn")]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(3232, 25)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, 487)
+shape = SubResource("RectangleShape2D_lifld")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
