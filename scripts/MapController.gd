@@ -26,16 +26,13 @@ func _on_right_trigger_body_entered(body):
 	if body.is_in_group("Player"):
 		move_map("Right")
 
-
 func _on_top_trigger_body_entered(body):
 	if body.is_in_group("Player"):
 		move_map("Top")
 
-
 func _on_left_trigger_body_entered(body):
 	if body.is_in_group("Player"):
 		move_map("Left")
-
 
 func _on_bottom_trigger_body_entered(body):
 	if body.is_in_group("Player"):

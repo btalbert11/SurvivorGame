@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjs56dh247aw"]
+
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="1_fpg4h"]
+[ext_resource type="Script" path="res://scripts/magic_missle_attack.gd" id="1_mv4c8"]
+[ext_resource type="Texture2D" uid="uid://bd3qtou0y04c5" path="res://art/icon.svg" id="2_2ipbb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7deo"]
+radius = 82.3529
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwwam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2ipbb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MagicMissleAttack" type="Node2D"]
+scale = Vector2(0.34, 0.34)
+script = ExtResource("1_mv4c8")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_fpg4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_a7deo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xwwam")
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

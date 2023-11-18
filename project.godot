@@ -52,6 +52,19 @@ camera_zoom_out_DEBUG={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="WorldPhysics"
+2d_physics/layer_2="PlayerHurtbox"
+2d_physics/layer_3="PlayerHitbox"
+2d_physics/layer_4="EnemyHurtbox"
+2d_physics/layer_5="EnemyHitbox"
+2d_physics/layer_6="EntityPhysics"
+
+[physics]
+
+2d/default_gravity=0.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

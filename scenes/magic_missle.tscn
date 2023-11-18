@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsts51etd05vn"]
+
+[ext_resource type="Script" path="res://scripts/MagicMissle.gd" id="1_lbp77"]
+[ext_resource type="PackedScene" uid="uid://bjs56dh247aw" path="res://scenes/magic_missle_attack.tscn" id="2_4cddy"]
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="2_m3ou5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6cw8"]
+radius = 496.0
+
+[node name="MagicMissle" type="Node2D"]
+script = ExtResource("1_lbp77")
+missle_scene = ExtResource("2_4cddy")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_m3ou5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_x6cw8")

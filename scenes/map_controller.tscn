@@ -71,14 +71,6 @@ metadata/_edit_group_ = true
 
 [node name="GrassLevel" parent="BottomLeft" instance=ExtResource("2_usjqn")]
 
-[node name="RightTrigger" type="Area2D" parent="."]
-position = Vector2(3232, 25)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTrigger"]
-position = Vector2(3, 487)
-shape = SubResource("RectangleShape2D_lifld")
-
 [node name="Right2" type="Node2D" parent="."]
 position = Vector2(3264, 0)
 metadata/_edit_group_ = true
@@ -114,28 +106,6 @@ position = Vector2(-1632, -2048)
 metadata/_edit_group_ = true
 
 [node name="GrassLevel" parent="TopLeft2" instance=ExtResource("2_usjqn")]
-
-[node name="TopTrigger" type="Area2D" parent="."]
-position = Vector2(698, -2018)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopTrigger"]
-position = Vector2(103.5, 1007)
-shape = SubResource("RectangleShape2D_28hay")
-
-[node name="LeftTrigger" type="Area2D" parent="."]
-position = Vector2(-1618, 321)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTrigger"]
-position = Vector2(-4, 191.5)
-shape = SubResource("RectangleShape2D_dy7uk")
-
-[node name="BottomTrigger" type="Area2D" parent="."]
-position = Vector2(781, 2041)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomTrigger"]
-position = Vector2(30.5, 0)
-shape = SubResource("RectangleShape2D_7h3sc")
 
 [node name="Left2" type="Node2D" parent="."]
 position = Vector2(-3264, 0)
@@ -196,6 +166,36 @@ position = Vector2(3264, -2048)
 metadata/_edit_group_ = true
 
 [node name="GrassLevel" parent="TopRight4" instance=ExtResource("2_usjqn")]
+
+[node name="RightTrigger" type="Area2D" parent="."]
+position = Vector2(3232, 25)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTrigger"]
+position = Vector2(3, 487)
+shape = SubResource("RectangleShape2D_lifld")
+
+[node name="TopTrigger" type="Area2D" parent="."]
+position = Vector2(698, -2018)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopTrigger"]
+position = Vector2(103.5, 1007)
+shape = SubResource("RectangleShape2D_28hay")
+
+[node name="LeftTrigger" type="Area2D" parent="."]
+position = Vector2(-1618, 321)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTrigger"]
+position = Vector2(-4, 191.5)
+shape = SubResource("RectangleShape2D_dy7uk")
+
+[node name="BottomTrigger" type="Area2D" parent="."]
+position = Vector2(781, 2041)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomTrigger"]
+position = Vector2(30.5, 0)
+shape = SubResource("RectangleShape2D_7h3sc")
 
 [connection signal="body_entered" from="RightTrigger" to="." method="_on_right_trigger_body_entered"]
 [connection signal="body_entered" from="TopTrigger" to="." method="_on_top_trigger_body_entered"]
