@@ -1,25 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjs56dh247aw"]
+[gd_scene load_steps=10 format=3 uid="uid://bjs56dh247aw"]
 
 [ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="1_fpg4h"]
 [ext_resource type="Script" path="res://scripts/magic_missle_attack.gd" id="1_mv4c8"]
-[ext_resource type="Texture2D" uid="uid://bd3qtou0y04c5" path="res://art/icon.svg" id="2_2ipbb"]
+[ext_resource type="Texture2D" uid="uid://bl3pnm0iqemsu" path="res://art/sprite sheet/magic missle attack.png" id="3_r5mci"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a7deo"]
-radius = 82.3529
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o841"]
+atlas = ExtResource("3_r5mci")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1su0y"]
+atlas = ExtResource("3_r5mci")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gwve"]
+atlas = ExtResource("3_r5mci")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12aqq"]
+atlas = ExtResource("3_r5mci")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xwwam"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2ipbb")
+"texture": SubResource("AtlasTexture_1o841")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1su0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gwve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12aqq")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 30.0
 }]
 
 [node name="MagicMissleAttack" type="Node2D"]
-scale = Vector2(0.34, 0.34)
+rotation = 0.71733
+scale = Vector2(2.54, 2.54)
 script = ExtResource("1_mv4c8")
 
 [node name="HitboxComponent" type="Area2D" parent="."]
@@ -32,5 +58,7 @@ shape = SubResource("CircleShape2D_a7deo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xwwam")
+autoplay = "default"
+frame_progress = 0.120038
 
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

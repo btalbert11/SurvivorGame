@@ -15,7 +15,6 @@ func _process(delta):
 		$AnimatedSprite2D.modulate.a -= blink_speed * delta
 		if $AnimatedSprite2D.modulate.a <= 0.3:
 			$AnimatedSprite2D.modulate.a = 1
-		print($AnimatedSprite2D.modulate.a)
 
 func _physics_process(delta):
 

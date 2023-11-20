@@ -2,6 +2,7 @@ extends Node2D
 
 @export var missle_scene: PackedScene
 @export var fire_rate: float = 1
+@export var missle_speed: float = 200
 var attack: Attack
 var fire_timer: float = 0
 var damage: float = 1
@@ -20,13 +21,21 @@ func _process(delta):
 
 func fire():
 	# Get closest enemy
-	var enemies = $HitboxComponent.get_overlapping_areas()
-	var target = enemies[0]
-	for enemy in enemies:
-		if global_position.distance_to(target.global_position) < global_position.distance_to(enemy.global_position):
-			target = enemy
+	# TODO MOVE THIS TO THE MISSLE ITSSELF
+#	var enemies = $HitboxComponent.get_overlapping_areas()
+#	var target = enemies[0]
+#	for enemy in enemies:
+#		if global_position.distance_to(target.global_position) < global_position.distance_to(enemy.global_position):
+#			target = enemy
 	# Fire
 	var missle = missle_scene.instantiate()
 	missle.attack = attack
-	missle.target = target.get_parent()
-	add_child(missle)
+#	missle.target = target.get_parent()
+#	missle.SPEED = missle_speed
+	var rng = RandomNumberGenerator.new()
+	var rand_x = rng.randf_range(-300, 300)
+	var rand_y = rng.randf_range(-300, 300)
+	missle.velocity.x = rand_x
+	missle.velocity.y = rand_y
+	get_tree().root.get_child(0).add_child(missle)
+	missle.global_position = global_position

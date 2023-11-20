@@ -31,3 +31,19 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 editor_draw_drag_margin = true
 script = ExtResource("3_45xlr")
+
+[node name="BloxEnemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ni077")]
+position = Vector2(2624, 231)
+target = NodePath("../Player")
+
+[node name="BloxEnemy3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ni077")]
+position = Vector2(2488, 580)
+target = NodePath("../Player")
+
+[node name="BloxEnemy4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ni077")]
+position = Vector2(2542, 232)
+target = NodePath("../Player")
+
+[node name="BloxEnemy5" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ni077")]
+position = Vector2(2729, 262)
+target = NodePath("../Player")
