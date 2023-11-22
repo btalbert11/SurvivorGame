@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bl3pnm0iqemsu" path="res://art/sprite sheet/magic missle attack.png" id="3_r5mci"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a7deo"]
-radius = 8.0
+radius = 7.81474
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1o841"]
 atlas = ExtResource("3_r5mci")
@@ -61,4 +61,9 @@ sprite_frames = SubResource("SpriteFrames_xwwam")
 autoplay = "default"
 frame_progress = 0.120038
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.0272071, -0.0311825)
+scale = Vector2(0.687023, 0.729359)
+
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

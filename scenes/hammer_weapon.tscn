@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://p4pcluefy1gb"]
+
+[ext_resource type="Script" path="res://scripts/HammerWeapon.gd" id="1_rwe2u"]
+[ext_resource type="PackedScene" uid="uid://d1ivonlksoprh" path="res://scenes/hammer_attack.tscn" id="2_bsk64"]
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="2_vjqcw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w6fft"]
+radius = 175.0
+
+[node name="HammerWeapon" type="Node2D"]
+script = ExtResource("1_rwe2u")
+hammer_attack_scene = ExtResource("2_bsk64")
+fire_rate = null
+damage = null
+knockback = null
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("2_vjqcw")
+
+[node name="CollisionShape2DRIGHT" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(275, 0)
+shape = SubResource("CircleShape2D_w6fft")
+
+[node name="CollisionShape2DLEFT" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-275, 0)
+shape = SubResource("CircleShape2D_w6fft")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

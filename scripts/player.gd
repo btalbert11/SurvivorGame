@@ -7,11 +7,11 @@ extends CharacterBody2D
 
 signal player_died
 
-var invicible: bool = false
+var invincible: bool = false
 
 func _process(delta):
 	# Blink
-	if invicible:
+	if invincible:
 		$AnimatedSprite2D.modulate.a -= blink_speed * delta
 		if $AnimatedSprite2D.modulate.a <= 0.3:
 			$AnimatedSprite2D.modulate.a = 1
@@ -34,7 +34,7 @@ func _on_health_component_no_health(current_health):
 	queue_free()
 
 func _on_invcicible_timer_timeout():
-	invicible = false
+	invincible = false
 	$AnimatedSprite2D.modulate.a = 1
 	$HurtboxComponent/CollisionShape2D.set_deferred("disabled", false)
 	set_collision_layer_value(1, 1)
@@ -42,18 +42,33 @@ func _on_invcicible_timer_timeout():
 
 
 func _on_hurtbox_component_attacked(attack: Attack):
-	if !invicible:
+	if !invincible:
 		health_component.take_damage(attack)
-		# Set invicible state
-		invicible = true
-		var timer = Timer.new()
-		timer.wait_time = i_frames_timer
-		timer.one_shot = true
-		timer.autostart = false
-		timer.connect("timeout", _on_invcicible_timer_timeout)
-		add_child(timer)
-		timer.start()
-		# disable hurtbox
-		$HurtboxComponent/CollisionShape2D.set_deferred("disabled", true)
-		set_collision_layer_value(1, 0)
-		set_collision_mask_value(1, 0)
+		set_invincible()
+		disable_collision()
+
+func disable_collision():
+	# disable hurtbox
+	$HurtboxComponent/CollisionShape2D.set_deferred("disabled", true)
+	# disable enemy collision
+	set_collision_layer_value(6, 0)
+	set_collision_mask_value(6, 0)
+
+func enable_collision():
+	# enable hurtbox
+	$HurtboxComponent/CollisionShape2D.set_deferred("disabled", false)
+	# enable enemy collision
+	set_collision_layer_value(6, 0)
+	set_collision_mask_value(6, 0)
+
+func set_invincible():
+	# Set invicible state
+	invincible = true
+	var timer = Timer.new()
+	timer.wait_time = i_frames_timer
+	timer.one_shot = true
+	timer.autostart = false
+	timer.connect("timeout", _on_invcicible_timer_timeout)
+	add_child(timer)
+	timer.start()
+

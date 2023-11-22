@@ -10,7 +10,7 @@
 [node name="MapController" parent="." instance=ExtResource("1_345sd")]
 
 [node name="Player" parent="." instance=ExtResource("2_w6apd")]
-position = Vector2(2621, 450)
+position = Vector2(2855, 854)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../MainCamera")
@@ -20,7 +20,7 @@ position = Vector2(2420, 449)
 target = NodePath("../Player")
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2(2621, 450)
+position = Vector2(2855, 854)
 scale = Vector2(0.62, 0.62)
 zoom = Vector2(0.95, 0.95)
 drag_horizontal_enabled = true

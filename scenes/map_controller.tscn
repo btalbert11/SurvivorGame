@@ -169,6 +169,7 @@ metadata/_edit_group_ = true
 
 [node name="RightTrigger" type="Area2D" parent="."]
 position = Vector2(3232, 25)
+collision_mask = 64
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightTrigger"]
@@ -177,6 +178,7 @@ shape = SubResource("RectangleShape2D_lifld")
 
 [node name="TopTrigger" type="Area2D" parent="."]
 position = Vector2(698, -2018)
+collision_mask = 64
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopTrigger"]
@@ -185,6 +187,7 @@ shape = SubResource("RectangleShape2D_28hay")
 
 [node name="LeftTrigger" type="Area2D" parent="."]
 position = Vector2(-1618, 321)
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTrigger"]
 position = Vector2(-4, 191.5)
@@ -192,6 +195,7 @@ shape = SubResource("RectangleShape2D_dy7uk")
 
 [node name="BottomTrigger" type="Area2D" parent="."]
 position = Vector2(781, 2041)
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomTrigger"]
 position = Vector2(30.5, 0)

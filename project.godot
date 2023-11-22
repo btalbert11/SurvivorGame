@@ -60,6 +60,7 @@ camera_zoom_out_DEBUG={
 2d_physics/layer_4="EnemyHurtbox"
 2d_physics/layer_5="EnemyHitbox"
 2d_physics/layer_6="EntityPhysics"
+2d_physics/layer_7="PlayerLocation"
 
 [physics]
 
