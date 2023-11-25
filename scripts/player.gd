@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var i_frames_timer: float = 1
 
 signal player_died
+signal player_attacked(current_health: float, max_health: float)
 
 var invincible: bool = false
 
@@ -46,6 +47,7 @@ func _on_hurtbox_component_attacked(attack: Attack):
 		health_component.take_damage(attack)
 		set_invincible()
 		disable_collision()
+		player_attacked.emit(health_component.get_current_health(), health_component.get_max_health())
 
 func disable_collision():
 	# disable hurtbox

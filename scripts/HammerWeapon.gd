@@ -6,6 +6,7 @@ extends Node2D
 @export var knockback: float = 1.0
 var fire_timer = Timer
 var attack: Attack
+var cool_down: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,27 +21,28 @@ func _process(delta):
 	pass
 
 
-func _on_hitbox_component_area_entered(area):
-	fire()
-
-func fire():
+func fire(right: bool):
+	if cool_down:
+		return
 	var hammer_attack = hammer_attack_scene.instantiate()
+	hammer_attack.init(right)
 	attack.origin = global_position
 	hammer_attack.attack = attack
-	TODO ADD LEFT RIGHT AND MAKE ART
+#	TODO ADD LEFT RIGHT AND MAKE ART
 #	add_child(hammer_attack)
 	call_deferred("add_child", hammer_attack)
 	disable_hitbox()
 	set_timer()
+	cool_down = true
 	
 
 func disable_hitbox():
-	$HitboxComponent/CollisionShape2DLEFT.set_deferred("disabled", true)
-	$HitboxComponent/CollisionShape2DRIGHT.set_deferred("disabled", true)
+	$HitboxComponentLeft/CollisionShape2D.set_deferred("disabled", true)
+	$HitboxComponentRight/CollisionShape2D.set_deferred("disabled", true)
 
 func enable_hitbox():
-	$HitboxComponent/CollisionShape2DLEFT.set_deferred("disabled", false)
-	$HitboxComponent/CollisionShape2DRIGHT.set_deferred("disabled", false)
+	$HitboxComponentLeft/CollisionShape2D.set_deferred("disabled", false)
+	$HitboxComponentRight/CollisionShape2D.set_deferred("disabled", false)
 
 func set_timer():
 	fire_timer = Timer.new()
@@ -53,3 +55,14 @@ func set_timer():
 	
 func _on_fire_timer_timeout():
 	enable_hitbox()
+	cool_down = false
+
+
+TODO CHECK WHICH ONE HAS MORE ENEMYS, THEN ATTACK THAT SIDE
+
+func _on_hitbox_component_right_area_entered(area):
+	fire(true)
+
+
+func _on_hitbox_component_left_area_entered(area):
+	fire(false)

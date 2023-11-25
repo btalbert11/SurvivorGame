@@ -8,11 +8,14 @@ var fading_in: bool = false
 var swinging: bool = false
 var fading_out: bool = false
 var rotation_angle: float = 0.0
+var right_side: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fading_in = true
 
+func init(direction: bool):
+	right_side = direction
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -23,11 +26,14 @@ func _process(delta):
 			swinging = true
 	if swinging && !left:
 		var to_rotate = swing_time * delta
+		if (!right_side):
+			to_rotate = 0 - to_rotate
 		rotation_angle += to_rotate
-		if rotation_angle >= PI/2:
+		if rotation_angle >= PI/2 || rotation_angle <= -PI/2:
 			# TODO Figure out this mat TODO
-			to_rotate = rotation_angle - (PI/2)
-			$Sprite2D.transform = $Sprite2D.transform.rotated(to_rotate)
+#			to_rotate = rotation_angle - (PI/2)
+#			$Sprite2D.transform = $Sprite2D.transform.rotated(to_rotate)
+			deal_damage()
 			swinging = false
 			fading_out = true
 		else:
@@ -39,3 +45,12 @@ func _process(delta):
 
 func delete_self():
 	queue_free()
+
+func deal_damage():
+	# Get all collisions
+	if (right_side):
+		for body in $HitboxComponentRight.get_overlapping_areas():
+			body.take_attack(attack)
+	else:
+		for body in $HitboxComponentLeft.get_overlapping_areas():
+			body.take_attack(attack)

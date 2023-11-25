@@ -3,6 +3,7 @@ extends Node2D
 @export var target: CharacterBody2D
 @export var SPEED_MAX: float = 500
 @export var snap_distance: int = 35
+@export var acceleration_value: float = 700
 var speed: float = 200
 var velocity: Vector2
 var acceleration: Vector2
@@ -10,8 +11,8 @@ var attack: Attack
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	acceleration.x = 500
-	acceleration.y = 500
+	acceleration.x = acceleration_value
+	acceleration.y = acceleration_value
 	get_target()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

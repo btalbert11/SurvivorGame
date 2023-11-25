@@ -10,7 +10,6 @@ signal no_health(current_health)
 func _ready():
 	health = MAX_HEALTH
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -20,3 +19,8 @@ func take_damage(attack: Attack):
 	if health <= 0:
 		no_health.emit(health)
 
+func get_current_health() -> float:
+	return health
+
+func get_max_health() -> float:
+	return MAX_HEALTH

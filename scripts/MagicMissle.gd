@@ -33,8 +33,8 @@ func fire():
 #	missle.target = target.get_parent()
 #	missle.SPEED = missle_speed
 	var rng = RandomNumberGenerator.new()
-	var rand_x = rng.randf_range(-300, 300)
-	var rand_y = rng.randf_range(-300, 300)
+	var rand_x = rng.randf_range(-100, 100)
+	var rand_y = rng.randf_range(-100, 100)
 	missle.velocity.x = rand_x
 	missle.velocity.y = rand_y
 	get_tree().root.get_child(0).add_child(missle)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1ivonlksoprh"]
 
 [ext_resource type="Script" path="res://scenes/hammer_attack.gd" id="1_ajumv"]
-[ext_resource type="Texture2D" uid="uid://bd3qtou0y04c5" path="res://art/icon.svg" id="1_eq3q4"]
 [ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="2_gsnfh"]
+[ext_resource type="Texture2D" uid="uid://csxb4lora5d4f" path="res://art/Hammer.png" id="2_u0g65"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ld8w5"]
 radius = 170.0
@@ -15,13 +15,24 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(-1.90735e-06, -105)
-scale = Vector2(0.546875, 1.67969)
-texture = ExtResource("1_eq3q4")
+position = Vector2(2.625, -105)
+scale = Vector2(5.75, 5.75)
+texture = ExtResource("2_u0g65")
 
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HitboxComponentRight" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("2_gsnfh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(275, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponentRight"]
+position = Vector2(275, 0)
+shape = SubResource("CircleShape2D_ld8w5")
+
+[node name="HitboxComponentLeft" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("2_gsnfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponentLeft"]
+position = Vector2(-275, 0)
 shape = SubResource("CircleShape2D_ld8w5")
