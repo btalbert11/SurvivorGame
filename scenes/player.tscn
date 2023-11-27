@@ -40,7 +40,6 @@ shape = SubResource("RectangleShape2D_e3vfk")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("3_hc870")
-MAX_HEALTH = 10000.0
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 position = Vector2(1.6129, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1ivonlksoprh"]
 
-[ext_resource type="Script" path="res://scenes/hammer_attack.gd" id="1_ajumv"]
+[ext_resource type="Script" path="res://scripts/hammer_attack.gd" id="1_ajumv"]
 [ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="2_gsnfh"]
 [ext_resource type="Texture2D" uid="uid://csxb4lora5d4f" path="res://art/Hammer.png" id="2_u0g65"]
 

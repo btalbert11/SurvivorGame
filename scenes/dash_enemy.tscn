@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1w6yc4tciih4"]
+
+[ext_resource type="Script" path="res://scripts/dash_enemy.gd" id="1_nrrfc"]
+[ext_resource type="Texture2D" uid="uid://bf8s10jkfcvwi" path="res://art/Lightning Cloud Guy.png" id="1_w3e8v"]
+[ext_resource type="Script" path="res://Nodes/HealthComponent.gd" id="2_1pr5g"]
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="3_8kimc"]
+[ext_resource type="Script" path="res://Nodes/HurtboxComponent.gd" id="4_ahtb4"]
+[ext_resource type="Script" path="res://Target.gd" id="6_ch82f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8s6x8"]
+radius = 23.0
+height = 62.0
+
+[node name="DashEnemy" type="CharacterBody2D" groups=["Enemies"]]
+scale = Vector2(1.26, 1.26)
+collision_layer = 32
+collision_mask = 33
+script = ExtResource("1_nrrfc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w3e8v")
+
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8s6x8")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_1pr5g")
+MAX_HEALTH = 4.0
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("3_8kimc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8s6x8")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("4_ahtb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8s6x8")
+
+[node name="Target" type="Node2D" parent="."]
+script = ExtResource("6_ch82f")
+
+[connection signal="no_health" from="HealthComponent" to="." method="_on_health_component_no_health"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
+[connection signal="attacked" from="HurtboxComponent" to="." method="_on_hurtbox_component_attacked"]

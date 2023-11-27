@@ -3,6 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$DashEnemy.set_target($Player)
 	pass # Replace with function body.
 
 
@@ -26,7 +27,7 @@ func spawn_blox_enemy():
 		print("New Enemy: " + str(pos))
 		return
 	var blox_enemy = Blox_Enemy.instantiate()
-	blox_enemy.target = $Player 
+	blox_enemy.set_target($Player) 
 	add_child(blox_enemy)
 	blox_enemy.position = pos
 

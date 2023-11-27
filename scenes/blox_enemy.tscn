@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3m0db3jdkfeq"]
+[gd_scene load_steps=11 format=3 uid="uid://b3m0db3jdkfeq"]
 
 [ext_resource type="Script" path="res://scripts/blox_enemy.gd" id="1_8igcj"]
 [ext_resource type="Texture2D" uid="uid://rtouup2l4usq" path="res://art/enemy.png" id="1_j5kx8"]
 [ext_resource type="Script" path="res://Nodes/HealthComponent.gd" id="2_hcdkv"]
 [ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="4_ytnur"]
 [ext_resource type="Script" path="res://Nodes/HurtboxComponent.gd" id="5_ttd70"]
+[ext_resource type="Script" path="res://Target.gd" id="6_rwt2y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sr6jb"]
 animations = [{
@@ -56,6 +57,9 @@ script = ExtResource("5_ttd70")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("RectangleShape2D_oxr0i")
+
+[node name="Target" type="Node2D" parent="."]
+script = ExtResource("6_rwt2y")
 
 [connection signal="no_health" from="HealthComponent" to="." method="_on_health_component_no_health"]
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_area_entered"]

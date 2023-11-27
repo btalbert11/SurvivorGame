@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 
 @export var SPEED: float = 100.0
-@export var target: CharacterBody2D
 @export var damage: float = 2
 var attack: Attack
 
@@ -14,9 +13,8 @@ func _ready():
 	attack.knockback = 0
 
 func _physics_process(delta):
-	if is_instance_valid(target):
-		var direction_to_player = global_position.direction_to(target.global_position)
-		velocity = direction_to_player * SPEED * delta
+	if $Target.is_valid():
+		velocity = $Target.direction_to_target() * SPEED * delta
 	else:
 		velocity = Vector2.ZERO
 	move_and_collide(velocity)
@@ -24,8 +22,12 @@ func _physics_process(delta):
 func attack_targert() -> Attack:
 	return attack
 
+func set_target(target: Node2D):
+	$Target.set_target(target)
+
 func _on_hitbox_area_entered(area):
 	if area is HurtboxComponent:
+		attack.origin = global_position
 		area.take_attack(attack)
 
 

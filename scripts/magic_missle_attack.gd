@@ -40,6 +40,9 @@ func _physics_process(delta):
 	if velocity.length() > SPEED_MAX:
 		var len = velocity.length()
 		velocity = velocity * (1 - ((len - SPEED_MAX)/len))
+	
+	# POINT TOWARDS VELOCITY VECTOR. Magic Math
+	rotation = velocity.angle() + PI/2 + PI/4 - PI/8
 
 
 func _on_hitbox_component_area_entered(area):
