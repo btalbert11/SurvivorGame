@@ -18,7 +18,6 @@ func _process(delta):
 			$AnimatedSprite2D.modulate.a = 1
 
 func _physics_process(delta):
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -37,7 +36,7 @@ func _on_health_component_no_health(current_health):
 func _on_invcicible_timer_timeout():
 	invincible = false
 	$AnimatedSprite2D.modulate.a = 1
-	$HurtboxComponent/CollisionShape2D.set_deferred("disabled", false)
+	$HurtboxComponent.enable()
 	set_collision_layer_value(1, 1)
 	set_collision_mask_value(1, 1)
 
@@ -51,14 +50,14 @@ func _on_hurtbox_component_attacked(attack: Attack):
 
 func disable_collision():
 	# disable hurtbox
-	$HurtboxComponent/CollisionShape2D.set_deferred("disabled", true)
+	$HurtboxComponent.disable()
 	# disable enemy collision
 	set_collision_layer_value(6, 0)
 	set_collision_mask_value(6, 0)
 
 func enable_collision():
 	# enable hurtbox
-	$HurtboxComponent/CollisionShape2D.set_deferred("disabled", false)
+	$HurtboxComponent.enable()
 	# enable enemy collision
 	set_collision_layer_value(6, 0)
 	set_collision_mask_value(6, 0)

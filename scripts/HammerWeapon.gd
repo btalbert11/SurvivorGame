@@ -7,29 +7,33 @@ extends Node2D
 var fire_timer = Timer
 var attack: Attack
 var cool_down: bool = false
-
+var right_enemies = {}
+var left_enemies = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	attack = Attack.new()
 	attack.damage = damage
 	attack.knockback = knockback
+	# TODO add knockback to hammer attack
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-
-func fire(right: bool):
+func fire():
 	if cool_down:
 		return
 	var hammer_attack = hammer_attack_scene.instantiate()
+	var right: bool
+	if right_enemies.size() >= left_enemies.size():
+		right = true
+	else:
+		right = false
 	hammer_attack.init(right)
 	attack.origin = global_position
 	hammer_attack.attack = attack
-#	TODO ADD LEFT RIGHT AND MAKE ART
-#	add_child(hammer_attack)
 	call_deferred("add_child", hammer_attack)
 	disable_hitbox()
 	set_timer()
@@ -37,12 +41,12 @@ func fire(right: bool):
 	
 
 func disable_hitbox():
-	$HitboxComponentLeft/CollisionShape2D.set_deferred("disabled", true)
-	$HitboxComponentRight/CollisionShape2D.set_deferred("disabled", true)
+	$HitboxComponentLeft.disable()
+	$HitboxComponentRight.disable()
 
 func enable_hitbox():
-	$HitboxComponentLeft/CollisionShape2D.set_deferred("disabled", false)
-	$HitboxComponentRight/CollisionShape2D.set_deferred("disabled", false)
+	$HitboxComponentLeft.enable()
+	$HitboxComponentRight.enable()
 
 func set_timer():
 	fire_timer = Timer.new()
@@ -57,12 +61,26 @@ func _on_fire_timer_timeout():
 	enable_hitbox()
 	cool_down = false
 
-
-TODO CHECK WHICH ONE HAS MORE ENEMYS, THEN ATTACK THAT SIDE
-
 func _on_hitbox_component_right_area_entered(area):
-	fire(true)
+	var parent = area.get_owner()
+	if parent.is_in_group("Enemies"):
+		right_enemies[parent.get_instance_id()] = parent
+		call_deferred("fire")
 
 
 func _on_hitbox_component_left_area_entered(area):
-	fire(false)
+	var parent = area.get_owner()
+	if parent.is_in_group("Enemies"):
+		left_enemies[parent.get_instance_id()] = parent
+		call_deferred("fire")
+
+
+func _on_hitbox_component_right_area_exited(area):
+	var parent = area.get_owner()
+	if parent.is_in_group("Enemies"):
+		right_enemies.erase(parent.get_instance_id())
+
+func _on_hitbox_component_left_area_exited(area):
+	var parent = area.get_owner()
+	if parent.is_in_group("Enemies"):
+		left_enemies.erase(parent.get_instance_id())
