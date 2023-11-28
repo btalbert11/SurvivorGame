@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-@export var start_speed: float = 1000
-@export var acceleration: float = 50
+@export var start_speed: float = 500
+@export var acceleration: float = 5.5
 @export var damage: float = 3
 @export var knock_back: float = 20
-@export var movement_cooldown: float = 1
+@export var movement_cooldown: float = 0.2
 var moving: bool = false
 var attack: Attack
 var move_timer: Timer
@@ -21,26 +21,28 @@ func _ready():
 	move_timer.autostart = false
 	move_timer.timeout.connect(_on_move_timer_timeout)
 	add_child(move_timer)
-	move_timer.start()
+	move_timer.start(movement_cooldown + 0.2)
 
 func _process(delta):
 	pass
 
 func _physics_process(delta):
 	if moving:
-		velocity -= Vector2(acceleration, acceleration)
-		if velocity.x <= 0 || velocity.y <= 0:
+		velocity -= velocity.normalized() * acceleration
+		if velocity.length() <= 50:
 			velocity = Vector2.ZERO
 			moving = false
-			move_timer.start()
-		move_and_collide(velocity * delta)
+			move_timer.start(movement_cooldown)
+			return
+		move_and_slide()
+#		move_and_collide(velocity * delta)
 	
 
 func start_moving():
 	var vel_direction = $Target.direction_to_target()
 	var rng = RandomNumberGenerator.new()
 	velocity = Vector2(start_speed, start_speed) * vel_direction
-	print(velocity)
+	velocity = velocity.rotated(rng.randf_range(-PI/4, PI/4))
 	moving = true
 
 func _on_move_timer_timeout():

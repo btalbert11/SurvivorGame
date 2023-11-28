@@ -2,6 +2,7 @@ class_name HealthComponent
 extends Node
 
 @export var MAX_HEALTH: float = 10
+@export var invulnerability_time: float = 1
 var health: float
 
 signal no_health(current_health)

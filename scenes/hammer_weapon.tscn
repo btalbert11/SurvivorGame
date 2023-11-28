@@ -33,6 +33,7 @@ animations = [{
 [node name="HammerWeapon" type="Node2D"]
 script = ExtResource("1_rwe2u")
 hammer_attack_scene = ExtResource("2_bsk64")
+damage = 3.0
 
 [node name="HitboxComponentRight" type="Area2D" parent="."]
 collision_layer = 4
@@ -42,8 +43,6 @@ script = ExtResource("2_vjqcw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponentRight"]
 position = Vector2(275, 0)
 shape = SubResource("CircleShape2D_w6fft")
-
-[node name="Timer" type="Timer" parent="."]
 
 [node name="HitboxComponentLeft" type="Area2D" parent="."]
 collision_layer = 4

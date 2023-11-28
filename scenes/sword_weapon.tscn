@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqmimkey0bvwm"]
+
+[ext_resource type="Script" path="res://scenes/sword_weapon.gd" id="1_xfn3u"]
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="2_c0jtq"]
+[ext_resource type="Texture2D" uid="uid://t6gaw42rti0p" path="res://art/Sword.png" id="4_kpoac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drvfc"]
+size = Vector2(35, 242)
+
+[node name="SwordWeapon" type="Node2D"]
+script = ExtResource("1_xfn3u")
+metadata/_edit_lock_ = true
+
+[node name="Rotator" type="Node2D" parent="."]
+position = Vector2(0, -373)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rotator"]
+position = Vector2(-0.5, -0.370026)
+scale = Vector2(5, 7.47688)
+texture = ExtResource("4_kpoac")
+
+[node name="HitboxComponent" type="Area2D" parent="Rotator"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("2_c0jtq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rotator/HitboxComponent"]
+position = Vector2(-0.5, -3)
+shape = SubResource("RectangleShape2D_drvfc")
+
+[connection signal="area_entered" from="Rotator/HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
