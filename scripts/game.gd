@@ -1,10 +1,10 @@
 extends Node2D
 @export var Blox_Enemy: PackedScene
 @export var Dash_Enemy: PackedScene
+@export var Bounce_Enemy: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$DashEnemy.set_target($Player)
 	pass # Replace with function body.
 
 
@@ -18,6 +18,10 @@ func _process(delta):
 	rand_spawn = rng.randf_range(0, 500)
 	if (rand_spawn < 1 && is_instance_valid($Player)):
 		spawn_dash_enemy()
+
+	rand_spawn = rng.randf_range(0, 500)
+	if (rand_spawn < 0.5 && is_instance_valid($Player)):
+		spawn_bounce_enemy()
 
 func spawn_blox_enemy():
 	var pos = get_random_screen_point()
@@ -37,6 +41,15 @@ func spawn_dash_enemy():
 	add_child(dash_enemy)
 	dash_enemy.position = pos
 	
+func spawn_bounce_enemy():
+	var pos = get_random_screen_point()
+	if pos == Vector2.ZERO:
+		return
+	var bounce_enemy = Bounce_Enemy.instantiate()
+	bounce_enemy.set_target($Player)
+	add_child(bounce_enemy)
+	bounce_enemy.position = pos
+
 
 func get_random_screen_point() -> Vector2:
 	var screen_size = get_viewport().get_visible_rect().size

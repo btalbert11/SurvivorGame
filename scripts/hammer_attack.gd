@@ -30,9 +30,6 @@ func _process(delta):
 			to_rotate = 0 - to_rotate
 		rotation_angle += to_rotate
 		if rotation_angle >= PI/2 || rotation_angle <= -PI/2:
-			# TODO Figure out this mat TODO
-#			to_rotate = rotation_angle - (PI/2)
-#			$Sprite2D.transform = $Sprite2D.transform.rotated(to_rotate)
 			deal_damage()
 			swinging = false
 			fading_out = true

@@ -19,8 +19,8 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 	move_and_collide(velocity)
 
-func attack_targert() -> Attack:
-	return attack
+func get_offset_global_position() -> Vector2:
+	return global_position
 
 func set_target(target: Node2D):
 	$Target.set_target(target)
@@ -30,10 +30,8 @@ func _on_hitbox_area_entered(area):
 		attack.origin = global_position
 		area.take_attack(attack)
 
-
 func _on_hurtbox_component_attacked(attack):
 	$HealthComponent.take_damage(attack)
-
 
 func _on_health_component_no_health(current_health):
 	delete_self()

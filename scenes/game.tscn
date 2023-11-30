@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tp66n20xr846"]
+[gd_scene load_steps=8 format=3 uid="uid://tp66n20xr846"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_8wpga"]
 [ext_resource type="PackedScene" uid="uid://fyp7ogl4vcae" path="res://scenes/map_controller.tscn" id="1_345sd"]
@@ -6,22 +6,26 @@
 [ext_resource type="Script" path="res://scripts/MainCamera.gd" id="3_45xlr"]
 [ext_resource type="PackedScene" uid="uid://b3m0db3jdkfeq" path="res://scenes/blox_enemy.tscn" id="4_ni077"]
 [ext_resource type="PackedScene" uid="uid://d1w6yc4tciih4" path="res://scenes/dash_enemy.tscn" id="6_nxw05"]
+[ext_resource type="PackedScene" uid="uid://byq4usa7ody3t" path="res://scenes/bounce_enemy.tscn" id="7_25akp"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8wpga")
 Blox_Enemy = ExtResource("4_ni077")
 Dash_Enemy = ExtResource("6_nxw05")
+Bounce_Enemy = ExtResource("7_25akp")
 
 [node name="MapController" parent="." instance=ExtResource("1_345sd")]
+z_index = -100
 
 [node name="Player" parent="." instance=ExtResource("2_w6apd")]
-position = Vector2(2855, 854)
+position = Vector2(554, 341)
+metadata/_edit_group_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../MainCamera")
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2(2855, 854)
+position = Vector2(554, 341)
 scale = Vector2(0.62, 0.62)
 zoom = Vector2(0.95, 0.95)
 drag_horizontal_enabled = true
@@ -32,6 +36,7 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 editor_draw_drag_margin = true
 script = ExtResource("3_45xlr")
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -56,8 +61,5 @@ offset_bottom = 8.0
 grow_horizontal = 0
 grow_vertical = 2
 color = Color(0.811765, 0.129412, 0, 1)
-
-[node name="DashEnemy" parent="." instance=ExtResource("6_nxw05")]
-position = Vector2(2464, 832)
 
 [connection signal="player_attacked" from="Player" to="." method="_on_player_player_attacked"]

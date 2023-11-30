@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf8s10jkfcvwi"
-path="res://.godot/imported/Lightning Cloud Guy.png-83dd23fd18fd27dd74894be34f7552d7.ctex"
+uid="uid://ky056widg50d"
+path="res://.godot/imported/White Point.png-f8f6acbe3559e0a0de64f6fb1ec3db78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Lightning Cloud Guy.png"
-dest_files=["res://.godot/imported/Lightning Cloud Guy.png-83dd23fd18fd27dd74894be34f7552d7.ctex"]
+source_file="res://art/White Point.png"
+dest_files=["res://.godot/imported/White Point.png-f8f6acbe3559e0a0de64f6fb1ec3db78.ctex"]
 
 [params]
 

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var damage: float = 3
 @export var knock_back: float = 20
 @export var movement_cooldown: float = 0.2
+@export var health_max: float = 4
 var moving: bool = false
 var attack: Attack
 var move_timer: Timer
@@ -12,6 +13,7 @@ var move_timer: Timer
 signal enemy_died
 
 func _ready():
+	$HealthComponent.MAX_HEALTH = health_max
 	attack = Attack.new()
 	attack.damage = damage
 	attack.knockback = knock_back
@@ -35,8 +37,6 @@ func _physics_process(delta):
 			move_timer.start(movement_cooldown)
 			return
 		move_and_slide()
-#		move_and_collide(velocity * delta)
-	
 
 func start_moving():
 	var vel_direction = $Target.direction_to_target()
@@ -44,6 +44,9 @@ func start_moving():
 	velocity = Vector2(start_speed, start_speed) * vel_direction
 	velocity = velocity.rotated(rng.randf_range(-PI/4, PI/4))
 	moving = true
+
+func get_offset_global_position() -> Vector2:
+	return global_position
 
 func _on_move_timer_timeout():
 	start_moving()

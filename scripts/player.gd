@@ -26,7 +26,6 @@ func _physics_process(delta):
 	else:
 		velocity = Vector2.ZERO
 	var collision = move_and_collide(velocity)
-	
 
 func _on_health_component_no_health(current_health):
 	# Player died

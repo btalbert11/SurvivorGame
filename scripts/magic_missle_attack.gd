@@ -22,11 +22,11 @@ func _process(delta):
 func _physics_process(delta):
 	if is_instance_valid(target):
 		# snap to target to prevent orbiting
-		if global_position.distance_to(target.global_position) < snap_distance:
-			var dir_to = global_position.direction_to(target.global_position)
+		if global_position.distance_to(target.get_offset_global_position()) < snap_distance:
+			var dir_to = global_position.direction_to(target.get_offset_global_position())
 			velocity = dir_to * velocity.length()
 		# rotate acceleration towards enemy
-		var acc_direciton = global_position.direction_to(target.global_position)
+		var acc_direciton = global_position.direction_to(target.get_offset_global_position())
 		acceleration = acc_direciton * acceleration.length()
 	else:
 		get_target()
@@ -55,9 +55,10 @@ func get_target() -> bool:
 	if enemies.size() > 0:
 		target = enemies[0]
 		for enemy in enemies:
-			if global_position.distance_to(enemy.global_position) < global_position.distance_to(target.global_position):
+			if global_position.distance_to(enemy.get_offset_global_position()) < global_position.distance_to(target.get_offset_global_position()):
 				target = enemy
 		return true
+
 	else:
 		return false
 

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Nodes/HealthComponent.gd" id="2_hcdkv"]
 [ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="4_ytnur"]
 [ext_resource type="Script" path="res://Nodes/HurtboxComponent.gd" id="5_ttd70"]
-[ext_resource type="Script" path="res://Target.gd" id="6_rwt2y"]
+[ext_resource type="Script" path="res://scripts/Target.gd" id="6_gw44u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sr6jb"]
 animations = [{
@@ -59,7 +59,7 @@ script = ExtResource("5_ttd70")
 shape = SubResource("RectangleShape2D_oxr0i")
 
 [node name="Target" type="Node2D" parent="."]
-script = ExtResource("6_rwt2y")
+script = ExtResource("6_gw44u")
 
 [connection signal="no_health" from="HealthComponent" to="." method="_on_health_component_no_health"]
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_area_entered"]

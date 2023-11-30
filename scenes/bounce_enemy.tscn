@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://byq4usa7ody3t"]
+
+[ext_resource type="Texture2D" uid="uid://basyxe5r3icfa" path="res://art/Cloud Guy.png" id="1_anvyv"]
+[ext_resource type="Script" path="res://scripts/bounce_enemy.gd" id="1_t8nmo"]
+[ext_resource type="Script" path="res://Nodes/HurtboxComponent.gd" id="2_y0asw"]
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="3_1sgrp"]
+[ext_resource type="Script" path="res://Nodes/HealthComponent.gd" id="4_44wd8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb34i"]
+radius = 47.0
+height = 110.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dk4in"]
+radius = 44.0
+height = 88.0
+
+[node name="BounceEnemy" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 32
+collision_mask = 33
+script = ExtResource("1_t8nmo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_anvyv")
+
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wb34i")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_y0asw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CapsuleShape2D_dk4in")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("3_1sgrp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape2D_wb34i")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_44wd8")
+MAX_HEALTH = 6.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 58.5)
+scale = Vector2(1, 0.0859375)
+texture = ExtResource("1_anvyv")
+
+[connection signal="attacked" from="HurtboxComponent" to="." method="_on_hurtbox_component_attacked"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
+[connection signal="no_health" from="HealthComponent" to="." method="_on_health_component_no_health"]
