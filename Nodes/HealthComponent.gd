@@ -25,3 +25,11 @@ func get_current_health() -> float:
 
 func get_max_health() -> float:
 	return MAX_HEALTH
+	
+func set_max_health(new_max_health: float):
+	if new_max_health > 0:
+		MAX_HEALTH = new_max_health
+
+func set_current_health(new_current_health: float):
+	if new_current_health > 0 && new_current_health <= MAX_HEALTH:
+		health = new_current_health

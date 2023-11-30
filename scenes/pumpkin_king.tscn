@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://sx6wspnrkykr"]
+
+[ext_resource type="Texture2D" uid="uid://ds10yvy8p5hpq" path="res://art/Pumpkin King.png" id="1_7gqmn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my68f"]
+size = Vector2(224, 224)
+
+[node name="Pumpkin King" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 33
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7gqmn")
+
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_my68f")

@@ -3,14 +3,6 @@ extends Node2D
 
 @export var target: Node2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func set_target(new_target: Node2D) -> bool:
 	if is_instance_valid(new_target):
 		target = new_target
@@ -18,9 +10,14 @@ func set_target(new_target: Node2D) -> bool:
 	return false
 
 func direction_to_target() -> Vector2:
-	if is_instance_valid(target):
+	if is_valid():
 		return global_position.direction_to(target.global_position)
 	return Vector2.ZERO
+
+func distance_to_target() -> float:
+	if is_valid():
+		return global_position.distance_to(target.global_position)
+	return -1
 
 func is_valid() -> bool:
 	return is_instance_valid(target)

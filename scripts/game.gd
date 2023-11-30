@@ -2,9 +2,16 @@ extends Node2D
 @export var Blox_Enemy: PackedScene
 @export var Dash_Enemy: PackedScene
 @export var Bounce_Enemy: PackedScene
+@export var Big_Bad_Enemy: PackedScene
+
+@export var blox_spawn_rate: float = 4
+@export var dash_spawn_rate: float = 0.8
+@export var bounce_spawn_rate: float = 0.5
+@export var big_bad_spawn_rate: float = 0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$BigBadGuy.set_target($Player)
 	pass # Replace with function body.
 
 
@@ -12,44 +19,29 @@ func _ready():
 func _process(delta):
 	var rng = RandomNumberGenerator.new()
 	var rand_spawn = rng.randf_range(0, 500)
-	if (rand_spawn < 4 && is_instance_valid($Player)):
-		spawn_blox_enemy()
-	
-	rand_spawn = rng.randf_range(0, 500)
-	if (rand_spawn < 1 && is_instance_valid($Player)):
-		spawn_dash_enemy()
+	if (rand_spawn < blox_spawn_rate && is_instance_valid($Player)):
+		spawn_enemy(Blox_Enemy)
 
 	rand_spawn = rng.randf_range(0, 500)
-	if (rand_spawn < 0.5 && is_instance_valid($Player)):
-		spawn_bounce_enemy()
+	if (rand_spawn < dash_spawn_rate && is_instance_valid($Player)):
+		spawn_enemy(Dash_Enemy)
 
-func spawn_blox_enemy():
-	var pos = get_random_screen_point()
-	if pos == Vector2.ZERO:
-		return
-	var blox_enemy = Blox_Enemy.instantiate()
-	blox_enemy.set_target($Player) 
-	add_child(blox_enemy)
-	blox_enemy.position = pos
-	
-func spawn_dash_enemy():
-	var pos = get_random_screen_point()
-	if pos == Vector2.ZERO:
-		return
-	var dash_enemy = Dash_Enemy.instantiate()
-	dash_enemy.set_target($Player)
-	add_child(dash_enemy)
-	dash_enemy.position = pos
-	
-func spawn_bounce_enemy():
-	var pos = get_random_screen_point()
-	if pos == Vector2.ZERO:
-		return
-	var bounce_enemy = Bounce_Enemy.instantiate()
-	bounce_enemy.set_target($Player)
-	add_child(bounce_enemy)
-	bounce_enemy.position = pos
+	rand_spawn = rng.randf_range(0, 500)
+	if (rand_spawn < bounce_spawn_rate && is_instance_valid($Player)):
+		spawn_enemy(Bounce_Enemy)
 
+	rand_spawn = rng.randf_range(0, 500)
+	if (rand_spawn < big_bad_spawn_rate && is_instance_valid($Player)):
+		spawn_enemy(Big_Bad_Enemy)
+
+func spawn_enemy(enemy_type):
+	var pos = get_random_screen_point()
+	if pos == Vector2.ZERO:
+		return
+	var enemy = enemy_type.instantiate()
+	enemy.set_target($Player)
+	add_child(enemy)
+	enemy.position = pos
 
 func get_random_screen_point() -> Vector2:
 	var screen_size = get_viewport().get_visible_rect().size

@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://cnkjc5vu2l8av"]
+
+[ext_resource type="Texture2D" uid="uid://1vfjd0gouxdc" path="res://art/Big Bad Guy1.png" id="1_7qwte"]
+[ext_resource type="Script" path="res://scripts/big_bad_guy.gd" id="1_o7td3"]
+[ext_resource type="Texture2D" uid="uid://bbilofdsftxce" path="res://art/Big Bad Guy2.png" id="2_1l0up"]
+[ext_resource type="Texture2D" uid="uid://ddg13mef5j6wy" path="res://art/Big Bad Guy3.png" id="3_gwwom"]
+[ext_resource type="Script" path="res://Nodes/HealthComponent.gd" id="4_nlssc"]
+[ext_resource type="Script" path="res://Nodes/HurtboxComponent.gd" id="5_c4w0u"]
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="6_td7ty"]
+[ext_resource type="Script" path="res://scripts/Target.gd" id="8_fvedw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_efgof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7qwte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1l0up")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gwwom")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oe34w"]
+size = Vector2(184.555, 184.555)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwqqs"]
+size = Vector2(192.333, 192.333)
+
+[node name="BigBadGuy" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 32
+script = ExtResource("1_o7td3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_efgof")
+
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-1.43051e-06, -0.500004)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_oe34w")
+metadata/_edit_lock_ = true
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_nlssc")
+MAX_HEALTH = 50.0
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("5_c4w0u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-1.43051e-06, -0.500004)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_oe34w")
+metadata/_edit_lock_ = true
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("6_td7ty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-4.05312e-06, -1.00001)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bwqqs")
+
+[node name="Target" type="Node2D" parent="."]
+script = ExtResource("8_fvedw")
+
+[connection signal="no_health" from="HealthComponent" to="." method="_on_health_component_no_health"]
+[connection signal="attacked" from="HurtboxComponent" to="." method="_on_hurtbox_component_attacked"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

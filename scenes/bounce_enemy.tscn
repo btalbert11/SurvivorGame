@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://byq4usa7ody3t"]
+[gd_scene load_steps=9 format=3 uid="uid://byq4usa7ody3t"]
 
 [ext_resource type="Texture2D" uid="uid://basyxe5r3icfa" path="res://art/Cloud Guy.png" id="1_anvyv"]
 [ext_resource type="Script" path="res://scripts/bounce_enemy.gd" id="1_t8nmo"]
 [ext_resource type="Script" path="res://Nodes/HurtboxComponent.gd" id="2_y0asw"]
 [ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="3_1sgrp"]
 [ext_resource type="Script" path="res://Nodes/HealthComponent.gd" id="4_44wd8"]
+[ext_resource type="Texture2D" uid="uid://cms8fxjqr0yrj" path="res://art/Cloud Guy Shadow.png" id="6_li825"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb34i"]
 radius = 47.0
@@ -43,12 +44,12 @@ shape = SubResource("CapsuleShape2D_wb34i")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("4_44wd8")
-MAX_HEALTH = 6.0
+MAX_HEALTH = 12.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 position = Vector2(0, 58.5)
 scale = Vector2(1, 0.0859375)
-texture = ExtResource("1_anvyv")
+texture = ExtResource("6_li825")
 
 [connection signal="attacked" from="HurtboxComponent" to="." method="_on_hurtbox_component_attacked"]
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
