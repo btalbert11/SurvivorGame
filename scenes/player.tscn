@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgv6paigho48p"]
+[gd_scene load_steps=12 format=3 uid="uid://dgv6paigho48p"]
 
 [ext_resource type="Texture2D" uid="uid://bd3qtou0y04c5" path="res://art/icon.svg" id="1_fcapy"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_p6q2s"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bsts51etd05vn" path="res://scenes/magic_missle.tscn" id="5_5mhw4"]
 [ext_resource type="PackedScene" uid="uid://p4pcluefy1gb" path="res://scenes/hammer_weapon.tscn" id="6_rqg2a"]
 [ext_resource type="PackedScene" uid="uid://cqmimkey0bvwm" path="res://scenes/sword_weapon.tscn" id="7_u7r3x"]
+[ext_resource type="PackedScene" uid="uid://dt30khlgtqags" path="res://scenes/throwing_spikes_weapon.tscn" id="8_l5h7d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iriab"]
 animations = [{
@@ -60,6 +61,8 @@ shape = SubResource("RectangleShape2D_0gj8j")
 [node name="HammerWeapon" parent="." instance=ExtResource("6_rqg2a")]
 
 [node name="SwordWeapon" parent="." instance=ExtResource("7_u7r3x")]
+
+[node name="ThrowingSpikesWeapon" parent="." instance=ExtResource("8_l5h7d")]
 
 [connection signal="no_health" from="HealthComponent" to="." method="_on_health_component_no_health"]
 [connection signal="attacked" from="HurtboxComponent" to="." method="_on_hurtbox_component_attacked"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmi5rwcje3hsd"]
+
+[ext_resource type="Script" path="res://scripts/spike.gd" id="1_fprae"]
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="2_1rds6"]
+[ext_resource type="Texture2D" uid="uid://gt61gyy2ak2o" path="res://art/spike_weapon.png" id="2_x53jr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r424x"]
+size = Vector2(9, 72)
+
+[node name="Spike" type="Node2D"]
+scale = Vector2(1.16, 1.16)
+script = ExtResource("1_fprae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 9.53674e-07)
+scale = Vector2(0.59375, 2.1875)
+texture = ExtResource("2_x53jr")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("2_1rds6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_r424x")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+metadata/_edit_lock_ = true
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

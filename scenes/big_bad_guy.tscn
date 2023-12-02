@@ -42,7 +42,6 @@ sprite_frames = SubResource("SpriteFrames_efgof")
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-1.43051e-06, -0.500004)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_oe34w")
 metadata/_edit_lock_ = true
 
@@ -58,7 +57,6 @@ script = ExtResource("5_c4w0u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(-1.43051e-06, -0.500004)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_oe34w")
 metadata/_edit_lock_ = true
 
@@ -70,7 +68,6 @@ script = ExtResource("6_td7ty")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(-4.05312e-06, -1.00001)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bwqqs")
 
 [node name="Target" type="Node2D" parent="."]

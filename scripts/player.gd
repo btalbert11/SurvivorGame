@@ -22,7 +22,7 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction:
-		velocity = direction * SPEED * delta
+		velocity = direction.normalized() * SPEED * delta
 	else:
 		velocity = Vector2.ZERO
 	var collision = move_and_collide(velocity)

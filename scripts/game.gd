@@ -7,7 +7,7 @@ extends Node2D
 @export var blox_spawn_rate: float = 4
 @export var dash_spawn_rate: float = 0.8
 @export var bounce_spawn_rate: float = 0.5
-@export var big_bad_spawn_rate: float = 0.1
+@export var big_bad_spawn_rate: float = 0.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,8 +36,8 @@ func _process(delta):
 
 func spawn_enemy(enemy_type):
 	var pos = get_random_screen_point()
-	if pos == Vector2.ZERO:
-		return
+	while pos == Vector2.ZERO:
+		pos = get_random_screen_point()
 	var enemy = enemy_type.instantiate()
 	enemy.set_target($Player)
 	add_child(enemy)
@@ -51,7 +51,7 @@ func get_random_screen_point() -> Vector2:
 	rand_x = $MainCamera.position.x - (screen_size.x/2) + rand_x
 	rand_y = $MainCamera.position.y - (screen_size.y/2) + rand_y
 	var pos = Vector2(rand_x, rand_y)
-	if (pos.distance_to($Player.position) < 100):
+	if (pos.distance_to($Player.position) < 200):
 		return Vector2.ZERO
 	return pos
 

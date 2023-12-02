@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://dt30khlgtqags"]
+[gd_scene load_steps=3 format=3 uid="uid://dt30khlgtqags"]
+
+[ext_resource type="Script" path="res://scripts/throwing_spikes_weapon.gd" id="1_6kdm3"]
+[ext_resource type="PackedScene" uid="uid://cmi5rwcje3hsd" path="res://scenes/spike.tscn" id="2_p5jpa"]
 
 [node name="ThrowingSpikesWeapon" type="Node2D"]
+script = ExtResource("1_6kdm3")
+Spike_Scene = ExtResource("2_p5jpa")
