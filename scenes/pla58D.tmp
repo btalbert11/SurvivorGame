@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dgv6paigho48p"]
 
+[ext_resource type="Texture2D" uid="uid://bd3qtou0y04c5" path="res://art/icon.svg" id="1_fcapy"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_p6q2s"]
-[ext_resource type="Texture2D" uid="uid://bslvx8p32fhqv" path="res://art/The Guy.png" id="2_0ry4a"]
 [ext_resource type="Script" path="res://Nodes/HealthComponent.gd" id="3_hc870"]
 [ext_resource type="Script" path="res://Nodes/HurtboxComponent.gd" id="4_48p5b"]
 [ext_resource type="PackedScene" uid="uid://bsts51etd05vn" path="res://scenes/magic_missle.tscn" id="5_5mhw4"]
@@ -13,18 +13,18 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_0ry4a")
+"texture": ExtResource("1_fcapy")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wfwgy"]
-radius = 59.6992
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3vfk"]
+size = Vector2(114.516, 111.29)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gxma3"]
-radius = 62.2277
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gj8j"]
+size = Vector2(122.581, 120.968)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health_component") groups=["Player"]]
 scale = Vector2(0.62, 0.62)
@@ -34,16 +34,15 @@ script = ExtResource("1_p6q2s")
 health_component = NodePath("HealthComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.806448, 2.41936)
-scale = Vector2(3.88105, 3.67944)
 sprite_frames = SubResource("SpriteFrames_iriab")
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_wfwgy")
+position = Vector2(-0.806446, -0.806448)
+shape = SubResource("RectangleShape2D_e3vfk")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("3_hc870")
-MAX_HEALTH = 20.0
+MAX_HEALTH = 10000.0
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 position = Vector2(1.6129, 0)
@@ -52,8 +51,8 @@ collision_mask = 0
 script = ExtResource("4_48p5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(-2.41944, 2.41942)
-shape = SubResource("CircleShape2D_gxma3")
+position = Vector2(1.15364e-06, -0.806452)
+shape = SubResource("RectangleShape2D_0gj8j")
 
 [node name="Timer" type="Timer" parent="."]
 

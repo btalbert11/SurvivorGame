@@ -1,10 +1,9 @@
 extends Node2D
 
 @export var target: CharacterBody2D
-@export var SPEED_MAX: float = 500
+@export var SPEED_MAX: float = 200
 @export var snap_distance: int = 35
-@export var acceleration_value: float = 700
-var speed: float = 200
+@export var acceleration_value: float = 400
 var velocity: Vector2
 var acceleration: Vector2
 var attack: Attack

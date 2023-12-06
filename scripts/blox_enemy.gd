@@ -3,14 +3,16 @@ extends CharacterBody2D
 
 @export var SPEED: float = 100.0
 @export var damage: float = 2
+@export var knockback: float = 0
+@export var experience_value: int = 2
 var attack: Attack
 
-signal enemy_died
+signal enemy_died(experience)
 
 func _ready():
 	attack = Attack.new()
 	attack.damage = damage
-	attack.knockback = 0
+	attack.knockback = knockback
 
 func _physics_process(delta):
 	if $Target.is_valid():
@@ -37,5 +39,5 @@ func _on_health_component_no_health(current_health):
 	delete_self()
 
 func delete_self():
-	enemy_died.emit()
+	enemy_died.emit(experience_value)
 	queue_free()

@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var jump_hold_time: float = 0.3
 @export var falling_speed: float = 500
 @export var target: CharacterBody2D
+@export var experience_value: int = 5
 var movement_target: Vector2
 var waiting: bool = true
 var jumping: bool = false
@@ -17,9 +18,9 @@ var falling: bool = false
 var current_wait: float = 0
 var percent_moved: float = 0
 var jump_starting_point: Vector2
-
-
 var attack: Attack
+
+signal enemy_died(experience)
 
 func _ready():
 	attack = Attack.new()
@@ -35,6 +36,8 @@ func _ready():
 
 func _physics_process(delta):
 	if waiting:
+		if !is_instance_valid(target):
+			return
 		current_wait += delta
 		# Jump toward player
 		if current_wait >= movement_cooldown:
@@ -84,6 +87,8 @@ func get_offset_global_position() -> Vector2:
 	return pos
 
 func get_movement_target() -> Vector2:
+	if !is_instance_valid(target):
+		return Vector2.ZERO
 	var new_target = target.global_position
 	# Player is farther away than movement range
 	if global_position.distance_to(new_target) > max_movement_distance:
@@ -111,4 +116,5 @@ func _on_health_component_no_health(current_health):
 	delete_self()
 
 func delete_self():
+	enemy_died.emit(experience_value)
 	queue_free()

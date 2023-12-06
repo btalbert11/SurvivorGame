@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crr852wnfxj6n"
-path="res://.godot/imported/Pumpkin King.png-7df78373fcdd8d9f04fa6f710eb5b8f4.ctex"
+uid="uid://bslvx8p32fhqv"
+path="res://.godot/imported/The Guy.png-e9cb14a4153b724f6b6ffb89915bddeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Pumpkin King.png"
-dest_files=["res://.godot/imported/Pumpkin King.png-7df78373fcdd8d9f04fa6f710eb5b8f4.ctex"]
+source_file="res://art/The Guy.png"
+dest_files=["res://.godot/imported/The Guy.png-e9cb14a4153b724f6b6ffb89915bddeb.ctex"]
 
 [params]
 

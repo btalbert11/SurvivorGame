@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://tp66n20xr846"]
+[gd_scene load_steps=11 format=3 uid="uid://tp66n20xr846"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_8wpga"]
 [ext_resource type="PackedScene" uid="uid://fyp7ogl4vcae" path="res://scenes/map_controller.tscn" id="1_345sd"]
 [ext_resource type="PackedScene" uid="uid://dgv6paigho48p" path="res://scenes/player.tscn" id="2_w6apd"]
 [ext_resource type="Script" path="res://scripts/MainCamera.gd" id="3_45xlr"]
 [ext_resource type="PackedScene" uid="uid://b3m0db3jdkfeq" path="res://scenes/blox_enemy.tscn" id="4_ni077"]
+[ext_resource type="PackedScene" uid="uid://sx6wspnrkykr" path="res://scenes/pumpkin_king.tscn" id="6_d18ab"]
 [ext_resource type="PackedScene" uid="uid://d1w6yc4tciih4" path="res://scenes/dash_enemy.tscn" id="6_nxw05"]
 [ext_resource type="PackedScene" uid="uid://byq4usa7ody3t" path="res://scenes/bounce_enemy.tscn" id="7_25akp"]
 [ext_resource type="PackedScene" uid="uid://cnkjc5vu2l8av" path="res://scenes/big_bad_guy.tscn" id="8_j2k3f"]
+[ext_resource type="Script" path="res://scripts/LevelUpScreen.gd" id="9_uput5"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8wpga")
@@ -15,19 +17,22 @@ Blox_Enemy = ExtResource("4_ni077")
 Dash_Enemy = ExtResource("6_nxw05")
 Bounce_Enemy = ExtResource("7_25akp")
 Big_Bad_Enemy = ExtResource("8_j2k3f")
+Pumpkin_Enemy = ExtResource("6_d18ab")
+metadata/_edit_lock_ = true
 
 [node name="MapController" parent="." instance=ExtResource("1_345sd")]
 z_index = -100
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_w6apd")]
-position = Vector2(554, 341)
+position = Vector2(560, 77)
 metadata/_edit_group_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../MainCamera")
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2(554, 341)
+position = Vector2(560, 77)
 scale = Vector2(0.62, 0.62)
 zoom = Vector2(0.95, 0.95)
 drag_horizontal_enabled = true
@@ -40,17 +45,19 @@ editor_draw_drag_margin = true
 script = ExtResource("3_45xlr")
 metadata/_edit_lock_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HealthBarLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 59.0
-offset_bottom = 26.0
+[node name="Label" type="Label" parent="HealthBarLayer"]
+offset_right = 104.0
+offset_bottom = 45.0
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.27451, 0.27451, 0.27451, 1)
 theme_override_font_sizes/font_size = 30
 text = "Health:"
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Label"]
+[node name="ColorRect" type="ColorRect" parent="HealthBarLayer/Label"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -64,7 +71,147 @@ grow_horizontal = 0
 grow_vertical = 2
 color = Color(0.811765, 0.129412, 0, 1)
 
-[node name="BigBadGuy" parent="." instance=ExtResource("8_j2k3f")]
-position = Vector2(136, 174)
+[node name="Experience" type="Label" parent="HealthBarLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -453.0
+offset_right = -294.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.27451, 0.27451, 0.27451, 1)
+theme_override_font_sizes/font_size = 30
+text = "Experience"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
+[node name="ColorRect" type="ColorRect" parent="HealthBarLayer/Experience"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -6.5
+offset_right = 4.0
+offset_bottom = 8.5
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.247059, 0.223529, 0.129412, 1)
+
+[node name="MagicLevelTODO" type="RichTextLabel" parent="HealthBarLayer"]
+process_mode = 4
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -152.93
+offset_top = -25.51
+offset_right = -84.9298
+offset_bottom = 8.48999
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.28, 2.28)
+theme_override_colors/default_color = Color(0.27451, 0.27451, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[img]res://art/Sword.png[/img]: 0"
+
+[node name="SwordLevel" type="RichTextLabel" parent="HealthBarLayer"]
+process_mode = 4
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -144.03
+offset_top = -123.6
+offset_right = -76.0298
+offset_bottom = -100.6
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(3.605, 3.605)
+theme_override_colors/default_color = Color(0.27451, 0.27451, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "[img]res://art/magic missle attack icon.png[/img]: 1"
+
+[node name="Level" type="Label" parent="HealthBarLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.27451, 0.27451, 0.27451, 1)
+theme_override_font_sizes/font_size = 30
+text = "Level 1: "
+
+[node name="LevelUpScreen" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+script = ExtResource("9_uput5")
+
+[node name="MagicUpgrade" type="Button" parent="LevelUpScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.0
+offset_top = 112.0
+offset_right = 216.0
+offset_bottom = 171.0
+grow_horizontal = 2
+text = "Upgrade Magic Missle\\nIncrease fire rate"
+
+[node name="HammerUpgrade" type="Button" parent="LevelUpScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.0
+offset_top = 218.655
+offset_right = 216.0
+offset_bottom = 277.655
+grow_horizontal = 2
+text = "Upgrade Hammer"
+
+[node name="SwordUpgrade" type="Button" parent="LevelUpScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.0
+offset_top = 339.67
+offset_right = 216.0
+offset_bottom = 398.67
+grow_horizontal = 2
+text = "Upgrade Sword"
+
+[node name="SpikeUpgrade" type="Button" parent="LevelUpScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.0
+offset_top = 474.85
+offset_right = 216.0
+offset_bottom = 533.85
+grow_horizontal = 2
+text = "Upgrade Throwing Spikes"
+
+[node name="BloxEnemy" parent="." instance=ExtResource("4_ni077")]
+position = Vector2(27, -296)
+
+[node name="BloxEnemy2" parent="." instance=ExtResource("4_ni077")]
+position = Vector2(-9, 357)
+
+[node name="BloxEnemy3" parent="." instance=ExtResource("4_ni077")]
+position = Vector2(1381, 236)
+
+[connection signal="leveled_up" from="Player" to="." method="_on_player_leveled_up"]
 [connection signal="player_attacked" from="Player" to="." method="_on_player_player_attacked"]
+[connection signal="enemy_died" from="BloxEnemy" to="." method="_on_enemy_died"]
+[connection signal="enemy_died" from="BloxEnemy2" to="." method="_on_enemy_died"]
+[connection signal="enemy_died" from="BloxEnemy3" to="." method="_on_enemy_died"]

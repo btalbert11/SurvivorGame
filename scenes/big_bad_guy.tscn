@@ -32,9 +32,10 @@ size = Vector2(184.555, 184.555)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwqqs"]
 size = Vector2(192.333, 192.333)
 
-[node name="BigBadGuy" type="CharacterBody2D" groups=["Enemies"]]
+[node name="BigBadGuy" type="CharacterBody2D" groups=["BigBad", "Enemies"]]
 collision_layer = 32
 script = ExtResource("1_o7td3")
+health_max = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_efgof")

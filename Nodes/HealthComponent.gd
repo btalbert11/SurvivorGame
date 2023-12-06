@@ -9,7 +9,7 @@ signal no_health(current_health)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	health = MAX_HEALTH
+	set_current_health(MAX_HEALTH)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,9 +26,11 @@ func get_current_health() -> float:
 func get_max_health() -> float:
 	return MAX_HEALTH
 	
-func set_max_health(new_max_health: float):
+func set_max_health(new_max_health: float, heal: bool):
 	if new_max_health > 0:
 		MAX_HEALTH = new_max_health
+		if health:
+			set_current_health(MAX_HEALTH)
 
 func set_current_health(new_current_health: float):
 	if new_current_health > 0 && new_current_health <= MAX_HEALTH:

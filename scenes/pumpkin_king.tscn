@@ -1,16 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://sx6wspnrkykr"]
+[gd_scene load_steps=9 format=3 uid="uid://sx6wspnrkykr"]
 
-[ext_resource type="Texture2D" uid="uid://ds10yvy8p5hpq" path="res://art/Pumpkin King.png" id="1_7gqmn"]
+[ext_resource type="Script" path="res://scripts/pumpkin_king.gd" id="1_ri7fp"]
+[ext_resource type="Script" path="res://Nodes/HealthComponent.gd" id="2_6xu1v"]
+[ext_resource type="Texture2D" uid="uid://crr852wnfxj6n" path="res://art/Pumpkin King.png" id="2_irpi4"]
+[ext_resource type="Script" path="res://Nodes/HurtboxComponent.gd" id="3_aen2h"]
+[ext_resource type="Script" path="res://Nodes/HitboxComponent.gd" id="4_tp3wq"]
+[ext_resource type="Script" path="res://scripts/Target.gd" id="6_lyv80"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my68f"]
 size = Vector2(224, 224)
 
-[node name="Pumpkin King" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxthq"]
+size = Vector2(227, 227)
+
+[node name="PumpkinKing" type="CharacterBody2D" groups=["Enemies", "Pumpkin"]]
 collision_layer = 32
-collision_mask = 33
+script = ExtResource("1_ri7fp")
+health_max = 400.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7gqmn")
+texture = ExtResource("2_irpi4")
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_my68f")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_6xu1v")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_aen2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_cxthq")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("4_tp3wq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_cxthq")
+
+[node name="Target" type="Node2D" parent="."]
+script = ExtResource("6_lyv80")
+
+[connection signal="no_health" from="HealthComponent" to="." method="_on_health_component_no_health"]
+[connection signal="attacked" from="HurtboxComponent" to="." method="_on_hurtbox_component_attacked"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

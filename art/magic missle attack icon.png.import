@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crr852wnfxj6n"
-path="res://.godot/imported/Pumpkin King.png-7df78373fcdd8d9f04fa6f710eb5b8f4.ctex"
+uid="uid://beyfr1p2ey00a"
+path="res://.godot/imported/magic missle attack icon.png-3a6b63594382f4206c69582e60e44850.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Pumpkin King.png"
-dest_files=["res://.godot/imported/Pumpkin King.png-7df78373fcdd8d9f04fa6f710eb5b8f4.ctex"]
+source_file="res://art/magic missle attack icon.png"
+dest_files=["res://.godot/imported/magic missle attack icon.png-3a6b63594382f4206c69582e60e44850.ctex"]
 
 [params]
 

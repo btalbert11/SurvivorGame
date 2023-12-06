@@ -4,15 +4,17 @@ extends CharacterBody2D
 @export var health_max: float = 50
 @export var speed: float = 40
 @export var rotation_speed: float = 0.5
-
+@export var experience_value: int = 10
 var attack: Attack
+
+signal enemy_died(experience)
 
 func _ready():
 	attack = Attack.new()
 	attack.damage = damage
 	attack.knockback = knockback
 	
-	$HealthComponent.set_max_health(health_max)
+	$HealthComponent.set_max_health(health_max, false)
 	
 func _physics_process(delta):
 	if $Target.is_valid():
@@ -43,4 +45,5 @@ func _on_health_component_no_health(current_health):
 	delete_self()
 
 func delete_self():
+	enemy_died.emit(experience_value)
 	queue_free()

@@ -15,7 +15,7 @@ height = 110.0
 radius = 44.0
 height = 88.0
 
-[node name="BounceEnemy" type="CharacterBody2D" groups=["Enemies"]]
+[node name="BounceEnemy" type="CharacterBody2D" groups=["Bounce", "Enemies"]]
 collision_layer = 32
 collision_mask = 33
 script = ExtResource("1_t8nmo")

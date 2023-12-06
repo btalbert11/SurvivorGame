@@ -6,11 +6,12 @@ extends CharacterBody2D
 @export var knock_back: float = 20
 @export var movement_cooldown: float = 0.2
 @export var health_max: float = 4
+@export var experience_value: int = 4
 var moving: bool = false
 var attack: Attack
 var move_timer: Timer
 
-signal enemy_died
+signal enemy_died(experience)
 
 func _ready():
 	$HealthComponent.MAX_HEALTH = health_max
@@ -62,9 +63,11 @@ func _on_hurtbox_component_attacked(attack):
 func _on_health_component_no_health(current_health):
 	delete_self()
 
-func delete_self():
-	enemy_died.emit()
-	queue_free()
 	
 func set_target(new_target: Node2D):
 	$Target.set_target(new_target)
+
+
+func delete_self():
+	enemy_died.emit(experience_value)
+	queue_free()
